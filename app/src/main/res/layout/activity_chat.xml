@@ -30,7 +30,6 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginLeft="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_back"
@@ -44,7 +43,6 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginRight="@dimen/_16sdp"
         android:padding="@dimen/_4sdp"
         android:src="@drawable/ic_info"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,15 +56,60 @@
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:ellipsize="end"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:maxLines="1"
         android:textColor="@color/white"
         android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/imageBack"
-        app:layout_constraintEnd_toStartOf="@id/imageInfo"
+        app:layout_constraintEnd_toStartOf="@id/videocall"
         app:layout_constraintStart_toEndOf="@id/imageBack"
         app:layout_constraintTop_toTopOf="@id/imageBack"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/videocall"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:padding="@dimen/_3sdp"
+        android:src="@drawable/ic_video_call"
+        app:layout_constraintStart_toEndOf="@id/textName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/phonecall"
+        app:tint="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/phonecall"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/ic_phone_call"
+        app:layout_constraintStart_toEndOf="@id/videocall"
+        app:layout_constraintEnd_toStartOf="@id/imageInfo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"/>
+
+    <TextView
+        android:id="@+id/textAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_2sdp"
+        android:text="@string/online"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/_52sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/textName"
+        app:layout_constraintBottom_toTopOf="@id/viewSupporter"
+        app:layout_constraintStart_toEndOf="@id/imageBack"
+        app:drawableTint="@color/green"
+        android:drawablePadding="@dimen/_4sdp"
+        app:drawableLeftCompat="@drawable/ic_online_dot" />
 
     <View
         android:id="@+id/viewSupporter"
@@ -83,7 +126,7 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
-        android:padding="@dimen/_20sdp"
+        android:padding="@dimen/_10sdp"
         app:stackFromEnd="true"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -105,6 +148,9 @@
         android:layout_height="0dp"
         android:background="@color/primary"
         app:layout_constraintTop_toBottomOf="@id/viewBackground"
+        app:layout_constraintStart_toStartOf="@id/layoutTypeMsg"
+        app:layout_constraintEnd_toEndOf="@id/layoutSend"
+        app:layout_constraintBottom_toTopOf="@id/layoutTypeMsg"
         />
 
     <FrameLayout
@@ -112,7 +158,6 @@
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_12sdp"
         android:background="@drawable/background_chat_input"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -122,7 +167,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginLeft="@dimen/_4sdp"
             android:padding="@dimen/_8sdp"
             android:src="@drawable/ic_send"
             app:tint="@color/white"/>
@@ -134,8 +178,7 @@
         android:layout_width="@dimen/_240sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_12sdp"
         android:background="@drawable/background_chat_input"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -160,11 +203,14 @@
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_2sdp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/secondary_text"
-                android:background="@drawable/background_chat_input"/>
+                android:textColorHint="#78909C"
+                android:background="@drawable/background_chat_input"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Attachment"
                 android:layout_width="@dimen/_28sdp"
                 android:layout_height="@dimen/_28sdp"
                 android:layout_gravity="center_vertical"
@@ -174,6 +220,7 @@
                 app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Camera"
                 android:layout_width="@dimen/_28sdp"
                 android:layout_height="@dimen/_28sdp"
                 android:layout_gravity="center_vertical"
@@ -184,19 +231,4 @@
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
-
-
-    <TextView
-        android:id="@+id/textAvailability"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green"
-        android:padding="@dimen/_2sdp"
-        android:text="@string/online"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_10ssp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/viewSupporter"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
