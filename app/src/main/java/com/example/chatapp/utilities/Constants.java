@@ -1,5 +1,7 @@
 package com.example.chatapp.utilities;
 
+import static com.example.chatapp.Keys.ApiKeys.key;
+
 import java.util.HashMap;
 
 public class Constants {
@@ -36,7 +38,7 @@ public class Constants {
             remoteMsgHeaders = new HashMap<>();
             remoteMsgHeaders.put(
                     REMOTE_MSG_AUTHORIZATION,
-                    "Key=AAAAyhDWoh4:APA91bFXUWwjg8E_JhcHD4bby8s9Oo7ANNRKbhhIfy3x28LEwNR_cdrOCkGQFr24liw6oCbVYcN-7Xw6bwlVVypBc0ye4YmDGD5dq13cdd6Of3IlmJX6FNR38HEviUr_4Aibyw5xpmGe"
+                    "Key="+key
             );
             remoteMsgHeaders.put(
                     REMOTE_MSG_CONTENT_TYPE,
