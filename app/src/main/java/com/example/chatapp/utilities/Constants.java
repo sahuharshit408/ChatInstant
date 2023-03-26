@@ -1,6 +1,6 @@
 package com.example.chatapp.utilities;
 
-import static com.example.chatapp.Keys.ApiKeys.key;
+import static com.example.chatapp.Key.apiKeys.key;
 
 import java.util.HashMap;
 
