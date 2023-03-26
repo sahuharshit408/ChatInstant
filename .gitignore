@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-Key/*
+/app/src/main/java/com.example.chatapp/Keys
