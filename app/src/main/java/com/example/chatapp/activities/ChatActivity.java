@@ -1,5 +1,6 @@
 package com.example.chatapp.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.chatapp.adapters.ChatAdapter;
 import com.example.chatapp.databinding.ActivityChatBinding;
+import com.example.chatapp.listeners.CallListener;
 import com.example.chatapp.models.ChatMessage;
 import com.example.chatapp.models.User;
 import com.example.chatapp.network.ApiClient;
@@ -42,7 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChatActivity extends BaseActivity {
+public class ChatActivity extends BaseActivity implements CallListener{
 
     private ActivityChatBinding binding;
     private User receiverUser;
@@ -247,6 +249,8 @@ public class ChatActivity extends BaseActivity {
     private void setListeners(){
         binding.imageBack.setOnClickListener(view -> onBackPressed());
         binding.layoutSend.setOnClickListener(view -> sendMessage());
+        binding.videocall.setOnClickListener(view -> initiateVideoMeeting(receiverUser));
+        binding.phonecall.setOnClickListener(view -> initiateAudioMeeting(receiverUser));
     }
 
     private String getReadableDateTime(Date date){
@@ -300,5 +304,37 @@ public class ChatActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         listenAvailabilityOfReceiver();
+    }
+
+    @Override
+    public void initiateVideoMeeting(User user) {
+        if(receiverUser.token == null || receiverUser.token.trim().isEmpty()){
+            Toast.makeText(
+                    this,
+                    receiverUser.name+" " + "is not available for meeting.",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }else {
+            Intent intent = new Intent(getApplicationContext(), OutgoingInvitationActivity.class);
+            intent.putExtra("user" , user);
+            intent.putExtra("type" , "video");
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void initiateAudioMeeting(User user) {
+        if(receiverUser.token == null || receiverUser.token.trim().isEmpty()){
+            Toast.makeText(
+                    this,
+                    receiverUser.name+" " + "is not available for meeting.",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }else {
+           Intent intent = new Intent(getApplicationContext() , OutgoingInvitationActivity.class);
+           intent.putExtra("user" , user);
+           intent.putExtra("type" , "audio");
+           startActivity(intent);
+        }
     }
 }

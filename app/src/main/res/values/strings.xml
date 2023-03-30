@@ -13,4 +13,10 @@
     <string name="select_user">Select User</string>
     <string name="type_a_message">Type a message</string>
     <string name="online">Online</string>
+    <string name="sending_meeting_invitation">Sending Meeting Invitation</string>
+    <string name="incoming_meeting_invitation">Incoming Meeting Invitation</string>
+    <string name="incoming_video_call">Incoming Video Call</string>
+    <string name="incoming_audio_call">Incoming Call</string>
+    <string name="calling">Calling</string>
+    <string name="video_calling">Video Calling</string>
 </resources>
